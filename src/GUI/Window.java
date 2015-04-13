@@ -1,5 +1,7 @@
 package GUI;
 
+import Client.Client;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -12,6 +14,7 @@ public class Window extends JFrame{
 
     private GridBagConstraints gbc;
     private ChatPanel chat;
+    private Client client;
 
     public Window() {
 
@@ -47,5 +50,10 @@ public class Window extends JFrame{
         gbc.gridy = 1;
         add(chat, gbc);
 
+    }
+
+    public void incMessage(Object obj) {
+
+        chat.append(obj);
     }
 }

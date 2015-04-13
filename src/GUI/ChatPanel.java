@@ -66,6 +66,14 @@ public class ChatPanel extends JPanel {
 
             }
         });
+    }
 
+    public void append(Object obj) {
+
+        if(obj instanceof String) {
+
+            area.append((String)obj);
+
+        }
     }
 }
