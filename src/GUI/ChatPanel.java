@@ -13,9 +13,11 @@ public class ChatPanel extends JPanel {
     private JTextArea area;
     private JTextField input;
     private GridBagConstraints gbc;
+    private Window window;
 
-    public ChatPanel() {
+    public ChatPanel(Window window) {
 
+        this.window = window;
         area = new JTextArea();
         input = new JTextField();
         gbc = new GridBagConstraints();
@@ -55,7 +57,7 @@ public class ChatPanel extends JPanel {
 
                 if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 
-                    area.append(input.getText() + "\n");
+                    window.send(input.getText());
                     input.setText("");
 
                 }
@@ -72,7 +74,7 @@ public class ChatPanel extends JPanel {
 
         if(obj instanceof String) {
 
-            area.append((String)obj);
+            area.append(obj + "\n");
 
         }
     }

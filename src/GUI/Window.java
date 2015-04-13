@@ -16,10 +16,11 @@ public class Window extends JFrame{
     private ChatPanel chat;
     private Client client;
 
-    public Window() {
+    public Window(Client client) {
 
+        this.client = client;
         gbc = new GridBagConstraints();
-        chat = new ChatPanel();
+        chat = new ChatPanel(this);
         setUpLayout();
 
     }
@@ -55,5 +56,12 @@ public class Window extends JFrame{
     public void incMessage(Object obj) {
 
         chat.append(obj);
+
+    }
+
+    public void send(Object obj) {
+
+        client.send(obj);
+
     }
 }
