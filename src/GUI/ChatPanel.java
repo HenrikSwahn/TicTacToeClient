@@ -47,10 +47,9 @@ public class ChatPanel extends JPanel {
     private void addListeners() {
 
         input.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
 
-            }
+            @Override
+            public void keyTyped(KeyEvent e) { }
 
             @Override
             public void keyPressed(KeyEvent e) {
@@ -64,9 +63,8 @@ public class ChatPanel extends JPanel {
             }
 
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void keyReleased(KeyEvent e) { }
 
-            }
         });
     }
 

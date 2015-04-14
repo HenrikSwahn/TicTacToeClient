@@ -1,6 +1,7 @@
 package Main;
 
 import Client.Client;
+import GUI.LoginFrame;
 import GUI.Window;
 
 /**
@@ -13,6 +14,9 @@ public class Main {
         Client client = new Client("127.0.0.1", 6066);
         Window win = new Window(client);
         client.setWindow(win);
+
+        LoginFrame login = new LoginFrame(win);
+
         client.connect();
 
     }
