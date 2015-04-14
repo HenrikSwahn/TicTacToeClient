@@ -1,8 +1,10 @@
 package GUI;
 
+import javax.smartcardio.Card;
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /**
  * Created by henrik on 14/04/15.
  */
@@ -10,6 +12,9 @@ public class LoginFrame extends JDialog {
 
     private Window win;
     private GridBagConstraints gbc;
+    private JPanel mPanel;
+
+
 
     public LoginFrame(Window win) {
 
@@ -37,13 +42,17 @@ public class LoginFrame extends JDialog {
 
         gbc.weighty = 0.8;
         gbc.gridy = 0;
-        add(createMainPanel(), gbc);
+        mPanel = createMainPanel();
+        add(mPanel, gbc);
 
     }
 
     private JPanel createBottmPanel() {
 
         JPanel p = new JPanel();
+        JButton b = new JButton("CLICK ME");
+        b.addActionListener(new ButtonListener());
+        p.add(b);
         p.setBackground(Color.BLACK);
         return p;
 
@@ -53,7 +62,43 @@ public class LoginFrame extends JDialog {
 
         JPanel p = new JPanel();
         p.setBackground(Color.WHITE);
+        p.setLayout(new CardLayout());
+        p.add(createMainPanel2());
+        p.add(createMainPanel3());
         return p;
 
+    }
+
+    private JPanel createMainPanel2() {
+
+        JPanel p = new JPanel();
+        p.setBackground(Color.GREEN);
+        return p;
+
+    }
+
+    private JPanel createMainPanel3() {
+
+        JPanel p = new JPanel();
+        p.setBackground(Color.RED);
+        return p;
+
+    }
+
+    private void update() {
+
+        CardLayout c = (CardLayout)mPanel.getLayout();
+        c.next(mPanel);
+
+    }
+
+    private class ButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            update();
+
+        }
     }
 }
