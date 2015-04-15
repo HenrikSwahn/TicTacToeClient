@@ -1,12 +1,8 @@
 package GUI;
 
-import javax.smartcardio.Card;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.*;
 
 /**
  * Created by henrik on 14/04/15.
@@ -26,6 +22,7 @@ public class LoginFrame extends JDialog {
         setResizable(false);
         setModal(true);
         setVisible(true);
+        mPanel.requestFocusInWindow();
 
     }
 
@@ -63,8 +60,12 @@ public class LoginFrame extends JDialog {
         l.setFont(new Font("Ubuntu Mono", Font.PLAIN, 18));
         okButton.setFont(new Font("Ubuntu Mono", Font.PLAIN, 16));
         noAccountB.setFont(new Font("Ubuntu Mono", Font.PLAIN, 16));
-
         passField.setToolTipText("Password");
+
+        okButton.addActionListener(new ButtonListener());
+        noAccountB.addActionListener(new ButtonListener());
+        okButton.setActionCommand("OK");
+        noAccountB.setActionCommand("JOIN");
 
         gbc.fill = GridBagConstraints.BOTH;
         gbc.gridy = 0;
@@ -101,7 +102,6 @@ public class LoginFrame extends JDialog {
     private JTextField createLoginField() {
 
         final JTextField nameField = new JTextField();
-
         nameField.setFont(new Font("Ubuntu Mono", Font.ITALIC, 16));
         nameField.setToolTipText("Email or username");
         nameField.setText("Username or email");
@@ -111,17 +111,23 @@ public class LoginFrame extends JDialog {
             @Override
             public void focusGained(FocusEvent e) {
 
-                nameField.setText("");
-                nameField.setFont(new Font("Ubuntu Mono", Font.PLAIN, 16));
+                if(nameField.getText().equals("Username or email")) {
 
+                    nameField.setText("");
+                    nameField.setFont(new Font("Ubuntu Mono", Font.PLAIN, 16));
+
+                }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
 
-                nameField.setFont(new Font("Ubuntu Mono", Font.ITALIC, 16));
-                nameField.setText("Username or email");
+                if(nameField.getText().equals("")) {
 
+                    nameField.setFont(new Font("Ubuntu Mono", Font.ITALIC, 16));
+                    nameField.setText("Username or email");
+
+                }
             }
         });
 
@@ -137,11 +143,15 @@ public class LoginFrame extends JDialog {
 
     }
 
-    private void update() {
+    private void changePane() {
 
         CardLayout c = (CardLayout)mPanel.getLayout();
         c.next(mPanel);
 
+    }
+
+    private void okPressed() {
+        
     }
 
     private class ButtonListener implements ActionListener {
@@ -149,8 +159,15 @@ public class LoginFrame extends JDialog {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            update();
+            switch(e.getActionCommand()) {
 
+                case "OK":
+                    okPressed();
+                    break;
+                case "JOIN":
+                    changePane();
+                    break;
+            }
         }
     }
 }
