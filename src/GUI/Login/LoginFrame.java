@@ -1,5 +1,7 @@
 package GUI.Login;
 
+import GUI.Window;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -16,10 +18,10 @@ public class LoginFrame extends JDialog {
 
 
 
-    public LoginFrame(GUI.Window win) {
+    public LoginFrame(Window win) {
 
         lPanel = new LoginPanel(this);
-        jPanel = new JoinPanel();
+        jPanel = new JoinPanel(this);
         this.win = win;
         setUpLayout();
         setLocationRelativeTo(win);
