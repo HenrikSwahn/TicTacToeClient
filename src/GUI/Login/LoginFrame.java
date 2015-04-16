@@ -51,11 +51,6 @@ public class LoginFrame extends JDialog {
 
     private JPanel createJoinPanel() {
 
-        JTextField name = new JTextField();
-        JTextField surName = new JTextField();
-        JTextField email = new JTextField();
-        JPasswordField pass = new JPasswordField();
-        JPasswordField rePass = new JPasswordField();
 
 
 

@@ -69,6 +69,7 @@ public class LoginPanel extends JPanel{
         gbc.gridx = 1;
         gbc.weightx = 0.5;
         add(okButton, gbc);
+
     }
 
     private void addPanelText() {
