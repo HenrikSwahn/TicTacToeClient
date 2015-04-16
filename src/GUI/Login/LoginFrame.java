@@ -4,7 +4,6 @@ import GUI.Window;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 /**
  * Created by henrik on 14/04/15.
@@ -15,8 +14,6 @@ public class LoginFrame extends JDialog {
     private JPanel mPanel;
     private LoginPanel lPanel;
     private JoinPanel jPanel;
-
-
 
     public LoginFrame(Window win) {
 
@@ -48,15 +45,6 @@ public class LoginFrame extends JDialog {
         p.add(lPanel);
         p.add(jPanel);
         return p;
-
-    }
-
-    private JPanel createJoinPanel() {
-
-
-
-
-        return null;
 
     }
 

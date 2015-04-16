@@ -173,7 +173,7 @@ public class JoinPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-               
+
         }
     }
 }
