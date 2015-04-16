@@ -1,7 +1,7 @@
 package Main;
 
 import Client.Client;
-import GUI.LoginFrame;
+import GUI.Login.LoginFrame;
 import GUI.Window;
 
 /**
