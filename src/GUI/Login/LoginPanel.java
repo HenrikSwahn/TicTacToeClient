@@ -35,11 +35,11 @@ public class LoginPanel extends JPanel{
         joinB = new JButton("Join");
         gbc = new GridBagConstraints();
 
-        panelText.setFont(new Font("Ubuntu Mono", Font.PLAIN, 18));
-        userText.setFont(new Font("Ubuntu Mono", Font.PLAIN, 16));
-        passText.setFont(new Font("Ubuntu Mono", Font.PLAIN, 16));
-        okButton.setFont(new Font("Ubuntu Mono", Font.PLAIN, 16));
-        joinB.setFont(new Font("Ubuntu Mono", Font.PLAIN, 16));
+        panelText.setFont(new Font("Arial", Font.PLAIN, 18));
+        userText.setFont(new Font("Arial", Font.PLAIN, 16));
+        passText.setFont(new Font("Arial", Font.PLAIN, 16));
+        okButton.setFont(new Font("Arial", Font.PLAIN, 16));
+        joinB.setFont(new Font("Arial", Font.PLAIN, 16));
         passField.setToolTipText("Password");
 
         okButton.addActionListener(new ButtonListener());

@@ -50,13 +50,17 @@ public class JoinPanel extends JPanel {
         gbc = new GridBagConstraints();
         mainPanel = new JPanel();
 
-        panelLabel.setFont(new Font("Ubuntu Mono", Font.PLAIN, 18));
-        nameLabel.setFont(new Font("Ubuntu Mono", Font.PLAIN, 16));
-        surNameLabel.setFont(new Font("Ubuntu Mono", Font.PLAIN, 16));
-        emailLabel.setFont(new Font("Ubuntu Mono", Font.PLAIN, 16));
-        passLabel.setFont(new Font("Ubuntu Mono", Font.PLAIN, 16));
-        rePassLabel.setFont(new Font("Ubuntu Mono", Font.PLAIN, 16));
-        userNameLabel.setFont(new Font("Ubuntu Mono", Font.PLAIN, 16));
+        panelLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        nameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        surNameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        emailLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        passLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        rePassLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        userNameLabel.setFont(new Font("Arialß", Font.PLAIN, 16));
+        join.setActionCommand("JOIN");
+        abort.setActionCommand("ABORT");
+        join.addActionListener(new ButtonListener());
+        abort.addActionListener(new ButtonListener());
 
         setUpLayout();
 
@@ -67,7 +71,6 @@ public class JoinPanel extends JPanel {
         setLayout(new GridLayout(1,1));
         mainPanel.setLayout(new GridBagLayout());
         mainPanel.setPreferredSize(new Dimension(200,500));
-
 
         addPanelText();
         addNameField();
@@ -169,11 +172,31 @@ public class JoinPanel extends JPanel {
 
     }
 
+    private void abort() {
+
+        parent.nextCard();
+        name.setText("");
+        surName.setText("");
+        email.setText("");
+        pass.setText("");
+        rePass.setText("");
+        userNameField.setText("");
+
+    }
+
     private class ButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
 
+            switch(e.getActionCommand()) {
+
+                case "ABORT":
+                    abort();
+                    break;
+                case "JOIN":
+                    break;
+            }
         }
     }
 }
