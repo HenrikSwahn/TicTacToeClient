@@ -72,12 +72,13 @@ public class LoginFrame extends JDialog {
 
             conn = new Socket("127.0.0.1", 6066);
             ObjectOutputStream ObjOut = new ObjectOutputStream(conn.getOutputStream());
-            ObjectInputStream ObjIn = new ObjectInputStream(conn.getInputStream());
+            //ObjectInputStream ObjIn = new ObjectInputStream(conn.getInputStream());
 
+            System.out.println("BEFORE");
             ObjOut.writeObject(user);
-            ObjOut.flush();
-            int statusCode = ObjIn.readInt();
-
+            //bjOut.flush();
+            int statusCode = 0;// ObjIn.readInt();
+            System.out.println("AFTER");
             switch(statusCode) {
                 case 0:
                     return "Account created, logged in";
