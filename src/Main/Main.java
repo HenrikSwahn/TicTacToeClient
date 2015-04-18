@@ -18,7 +18,5 @@ public class Main {
         LoginFrame login = new LoginFrame(win);
 
         client.connect();
-
     }
-
 }

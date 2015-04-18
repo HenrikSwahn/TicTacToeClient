@@ -1,5 +1,7 @@
 package GUI.Login;
 
+import Model.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -184,6 +186,18 @@ public class JoinPanel extends JPanel {
 
     }
 
+    private void join() {
+
+        String name = this.name.getText();
+        String surname = this.surName.getText();
+        String email = this.email.getText();
+        String pass = String.valueOf(this.pass.getPassword());
+        String userName = this.userNameField.getText();
+        User user = new User(name, surname, email, pass, userName);
+        parent.joinPressed(user);
+
+    }
+
     private class ButtonListener implements ActionListener {
 
         @Override
@@ -195,6 +209,7 @@ public class JoinPanel extends JPanel {
                     abort();
                     break;
                 case "JOIN":
+                    join();
                     break;
             }
         }
