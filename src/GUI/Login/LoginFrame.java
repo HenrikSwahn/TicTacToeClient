@@ -15,19 +15,19 @@ import java.net.Socket;
  */
 public class LoginFrame extends JDialog {
 
-    private GUI.Window win;
+    private Client.Client client;
     private JPanel mPanel;
     private LoginPanel lPanel;
     private JoinPanel jPanel;
     private Socket conn;
 
-    public LoginFrame(Window win) {
+    public LoginFrame(Client.Client client) {
 
         lPanel = new LoginPanel(this);
         jPanel = new JoinPanel(this);
-        this.win = win;
+        this.client = client;
         setUpLayout();
-        setLocationRelativeTo(win);
+        setLocationRelativeTo(null);
         setResizable(false);
         setModal(true);
         setVisible(true);
@@ -72,15 +72,17 @@ public class LoginFrame extends JDialog {
 
             conn = new Socket("127.0.0.1", 6066);
             ObjectOutputStream ObjOut = new ObjectOutputStream(conn.getOutputStream());
-            //ObjectInputStream ObjIn = new ObjectInputStream(conn.getInputStream());
-
-            System.out.println("BEFORE");
             ObjOut.writeObject(user);
-            //bjOut.flush();
-            int statusCode = 0;// ObjIn.readInt();
-            System.out.println("AFTER");
+            ObjOut.flush();
+            conn.shutdownOutput();
+
+            ObjectInputStream ObjIn = new ObjectInputStream(conn.getInputStream());
+            int statusCode = ObjIn.readInt();
+            conn.shutdownInput();
+
             switch(statusCode) {
                 case 0:
+                    client.connect(conn);
                     return "Account created, logged in";
                 case 1:
                     return "Email already in use";

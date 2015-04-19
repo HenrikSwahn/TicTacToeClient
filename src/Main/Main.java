@@ -12,11 +12,11 @@ public class Main {
     public static void main(String[] args) {
 
         Client client = new Client("127.0.0.1", 6066);
+        LoginFrame login = new LoginFrame(client);
         Window win = new Window(client);
         client.setWindow(win);
 
-        LoginFrame login = new LoginFrame(win);
 
-        client.connect();
+        //client.connect();
     }
 }

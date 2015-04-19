@@ -49,11 +49,11 @@ public class Client {
         }
     }
 
-    public void connect() {
+    public void connect(Socket sock) {
 
         try {
 
-            conn = new Socket(address, PORT);
+            conn = sock;//new Socket(address, PORT);
             out = conn.getOutputStream();
             in = conn.getInputStream();
             runServer();
