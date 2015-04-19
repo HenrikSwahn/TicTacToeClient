@@ -4,6 +4,8 @@ import GUI.*;
 
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,7 +48,9 @@ public class LoginPanel extends JPanel{
         joinB.addActionListener(new ButtonListener());
         okButton.setActionCommand("OK");
         joinB.setActionCommand("JOIN");
+        okButton.setEnabled(false);
 
+        addFieldListeners();
         setUpLayout();
 
     }
@@ -113,8 +117,79 @@ public class LoginPanel extends JPanel{
 
     private void okPressed() {
 
+        String name = nameField.getText();
+        String pass = String.valueOf(passField.getPassword());
         parent.login();
 
+    }
+
+    private void addFieldListeners() {
+
+        nameField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+        });
+
+        passField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+        });
+    }
+
+    private void changeOccured() {
+
+        if(!nameField.getText().equals("")) {
+
+            if(!String.valueOf(passField.getPassword()).equals("")) {
+
+                okButton.setEnabled(true);
+
+            }else{
+
+                okButton.setEnabled(false);
+
+            }
+        }else{
+
+            okButton.setEnabled(false);
+
+        }
     }
 
     private class ButtonListener implements ActionListener {
