@@ -253,7 +253,7 @@ public class JoinPanel extends JPanel {
 
     private boolean checkEmailFormat(String email) {
 
-        String pattern = "(.*)(@)(.*)(\\.)(.*)";
+        String pattern = "(.*)(@)(.*)(\\.)(.)(.)(.)";
         Pattern pat = Pattern.compile(pattern);
         Matcher match = pat.matcher(email);
 
