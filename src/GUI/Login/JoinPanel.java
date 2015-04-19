@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.Matcher;
@@ -404,70 +405,45 @@ public class JoinPanel extends JPanel {
 
     private void changeOccured() {
 
-        if(name.getText().equals("") && fieldCounter > 0) {
+        if(!name.getText().equals("")) {
 
-            fieldCounter--;
+            if(!surName.getText().equals("")) {
 
-        }else if(fieldCounter < 6) {
+                if(!email.getText().equals("")) {
 
-            fieldCounter++;
+                    if(!String.valueOf(pass.getPassword()).equals("")) {
 
-        }
+                        if(!String.valueOf(rePass.getPassword()).equals("")) {
 
-        if(surName.getText().equals("") && fieldCounter > 0) {
+                            if(!userNameField.getText().equals("")) {
 
-            fieldCounter--;
+                                join.setEnabled(true);
 
-        }else if(fieldCounter < 6) {
+                            }else{
 
-            fieldCounter++;
+                                join.setEnabled(false);
 
-        }
+                            }
+                        }else{
 
-        if(email.getText().equals("") && fieldCounter > 0) {
+                            join.setEnabled(false);
 
-            fieldCounter--;
+                        }
+                    }else{
 
-        }else if(fieldCounter < 6) {
+                        join.setEnabled(false);
 
-            fieldCounter++;
+                    }
+                }else{
 
-        }
+                    join.setEnabled(false);
 
-        if(pass.getText().equals("") && fieldCounter > 0) {
+                }
+            }else{
 
-            fieldCounter--;
+                join.setEnabled(false);
 
-        }else if(fieldCounter < 6) {
-
-            fieldCounter++;
-
-        }
-
-        if(rePass.getText().equals("") && fieldCounter > 0) {
-
-            fieldCounter--;
-
-        }else if(fieldCounter < 6) {
-
-            fieldCounter++;
-
-        }
-
-        if(userNameField.getText().equals("") && fieldCounter > 0) {
-
-            fieldCounter--;
-
-        }else if(fieldCounter < 6) {
-
-            fieldCounter++;
-
-        }
-
-        if(fieldCounter >= 6) {
-
-            join.setEnabled(true);
-
+            }
         }else{
 
             join.setEnabled(false);
