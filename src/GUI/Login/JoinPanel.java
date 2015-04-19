@@ -3,9 +3,13 @@ package GUI.Login;
 import Model.User;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by henrik on 16/04/15.
@@ -13,6 +17,7 @@ import java.awt.event.ActionListener;
 public class JoinPanel extends JPanel {
 
     private JLabel panelLabel;
+    private JLabel promptLabel;
     private JLabel nameLabel;
     private JLabel surNameLabel;
     private JLabel emailLabel;
@@ -30,11 +35,14 @@ public class JoinPanel extends JPanel {
     private GridBagConstraints gbc;
     private JPanel mainPanel;
     private LoginFrame parent;
+    private JScrollPane jsp;
+    private int fieldCounter;
 
     public JoinPanel(LoginFrame parent) {
 
         this.parent = parent;
         panelLabel = new JLabel("Fill form below please");
+        promptLabel = new JLabel();
         nameLabel = new JLabel("Name");
         surNameLabel = new JLabel("Lastname");
         emailLabel = new JLabel("Email");
@@ -51,8 +59,10 @@ public class JoinPanel extends JPanel {
         abort = new JButton("Abort");
         gbc = new GridBagConstraints();
         mainPanel = new JPanel();
+        fieldCounter = 0;
 
         panelLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        promptLabel.setFont(new Font("Arial", Font.PLAIN, 12));
         nameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         surNameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         emailLabel.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -63,6 +73,9 @@ public class JoinPanel extends JPanel {
         abort.setActionCommand("ABORT");
         join.addActionListener(new ButtonListener());
         abort.addActionListener(new ButtonListener());
+        join.setEnabled(false);
+
+        addFieldListeneners();
 
         setUpLayout();
 
@@ -75,6 +88,7 @@ public class JoinPanel extends JPanel {
         mainPanel.setPreferredSize(new Dimension(200,500));
 
         addPanelText();
+        addPromptLabel();
         addNameField();
         addSurNameField();
         addEmailField();
@@ -83,7 +97,7 @@ public class JoinPanel extends JPanel {
         addUsernameField();
         addButtons();
 
-        JScrollPane jsp = new JScrollPane(mainPanel);
+        jsp = new JScrollPane(mainPanel);
         mainPanel.setAutoscrolls(true);
         add(jsp);
     }
@@ -91,13 +105,19 @@ public class JoinPanel extends JPanel {
     private void addPanelText() {
 
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.gridy = 1;
+        gbc.gridy = 0;
         gbc.gridx = 0;
         gbc.weighty = 0.2;
         gbc.weightx = 0.5;
         gbc.gridwidth =  2;
         gbc.insets = new Insets(0,20,0,20);
         mainPanel.add(panelLabel, gbc);
+    }
+
+    private void addPromptLabel() {
+
+        gbc.gridy = 1;
+        mainPanel.add(promptLabel, gbc);
     }
 
     private void addNameField() {
@@ -192,10 +212,267 @@ public class JoinPanel extends JPanel {
         String surname = this.surName.getText();
         String email = this.email.getText();
         String pass = String.valueOf(this.pass.getPassword());
+        String rePass = String.valueOf(this.rePass.getPassword());
         String userName = this.userNameField.getText();
-        User user = new User(name, surname, email, pass, userName);
-        parent.joinPressed(user);
 
+        if(rePass.equals(pass)) {
+
+            if(checkEmailFormat(email)) {
+
+                User user = new User(name, surname, email, pass, userName);
+                String response = parent.joinPressed(user);
+
+                switch(response) {
+                    case "Email already in use":
+                        break;
+                    case "Username already in use":
+                        break;
+                    case "Error, please try again":
+                        break;
+                    default:
+
+                        break;
+                }
+            }else{
+
+                jsp.getViewport().setViewPosition(new Point(0,0));
+                promptLabel.setText("Error email format");
+
+            }
+        }else{
+
+            jsp.getViewport().setViewPosition(new Point(0,0));
+            promptLabel.setText("Password does not match");
+
+        }
+    }
+
+    private boolean checkEmailFormat(String email) {
+
+        String pattern = "(.*)(@)(.*)(\\.)(.*)";
+        Pattern pat = Pattern.compile(pattern);
+        Matcher match = pat.matcher(email);
+
+        if(match.find()) {
+
+            return true;
+
+        }
+        return false;
+    }
+
+    private void addFieldListeneners() {
+
+        name.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+        });
+
+        surName.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+        });
+
+        email.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+        });
+
+        pass.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+        });
+
+        rePass.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+        });
+
+        userNameField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+                changeOccured();
+
+            }
+        });
+    }
+
+    private void changeOccured() {
+
+        if(name.getText().equals("") && fieldCounter > 0) {
+
+            fieldCounter--;
+
+        }else if(fieldCounter < 6) {
+
+            fieldCounter++;
+
+        }
+
+        if(surName.getText().equals("") && fieldCounter > 0) {
+
+            fieldCounter--;
+
+        }else if(fieldCounter < 6) {
+
+            fieldCounter++;
+
+        }
+
+        if(email.getText().equals("") && fieldCounter > 0) {
+
+            fieldCounter--;
+
+        }else if(fieldCounter < 6) {
+
+            fieldCounter++;
+
+        }
+
+        if(pass.getText().equals("") && fieldCounter > 0) {
+
+            fieldCounter--;
+
+        }else if(fieldCounter < 6) {
+
+            fieldCounter++;
+
+        }
+
+        if(rePass.getText().equals("") && fieldCounter > 0) {
+
+            fieldCounter--;
+
+        }else if(fieldCounter < 6) {
+
+            fieldCounter++;
+
+        }
+
+        if(userNameField.getText().equals("") && fieldCounter > 0) {
+
+            fieldCounter--;
+
+        }else if(fieldCounter < 6) {
+
+            fieldCounter++;
+
+        }
+
+        if(fieldCounter >= 6) {
+
+            join.setEnabled(true);
+
+        }else{
+
+            join.setEnabled(false);
+
+        }
     }
 
     private class ButtonListener implements ActionListener {
