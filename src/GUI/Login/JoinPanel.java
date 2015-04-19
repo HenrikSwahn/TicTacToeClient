@@ -76,7 +76,7 @@ public class JoinPanel extends JPanel {
         abort.addActionListener(new ButtonListener());
         join.setEnabled(false);
 
-        addFieldListeneners();
+        addFieldListeners();
 
         setUpLayout();
 
@@ -225,13 +225,16 @@ public class JoinPanel extends JPanel {
 
                 switch(response) {
                     case "Email already in use":
+                        jsp.getViewport().setViewPosition(new Point(0, 0));
+                        promptLabel.setText("Email already in use");
                         break;
                     case "Username already in use":
+                        jsp.getViewport().setViewPosition(new Point(0, 0));
+                        promptLabel.setText("Username already in use");
                         break;
                     case "Error, please try again":
-                        break;
-                    default:
-
+                        jsp.getViewport().setViewPosition(new Point(0, 0));
+                        promptLabel.setText("Error, please try again");
                         break;
                 }
             }else{
@@ -262,7 +265,7 @@ public class JoinPanel extends JPanel {
         return false;
     }
 
-    private void addFieldListeneners() {
+    private void addFieldListeners() {
 
         name.getDocument().addDocumentListener(new DocumentListener() {
             @Override
