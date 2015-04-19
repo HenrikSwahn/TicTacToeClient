@@ -33,7 +33,7 @@ public class Window extends JFrame{
         setSize(new Dimension(680,420));
         setResizable(true);
         setUpPanels();
-        setVisible(true);
+        setLocationRelativeTo(null);
 
     }
 

@@ -37,7 +37,6 @@ public class LoginFrame extends JDialog {
     private void setUpLayout() {
 
         setSize(new Dimension(300,300));
-
         mPanel = createMainPanel();
         add(mPanel, BorderLayout.CENTER);
 
@@ -74,14 +73,14 @@ public class LoginFrame extends JDialog {
             ObjectOutputStream ObjOut = new ObjectOutputStream(conn.getOutputStream());
             ObjOut.writeObject(user);
             ObjOut.flush();
-            conn.shutdownOutput();
 
             ObjectInputStream ObjIn = new ObjectInputStream(conn.getInputStream());
             int statusCode = ObjIn.readInt();
-            conn.shutdownInput();
 
+            System.out.println(statusCode);
             switch(statusCode) {
                 case 0:
+                    dispose();
                     client.connect(conn);
                     return "Account created, logged in";
                 case 1:

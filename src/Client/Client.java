@@ -28,7 +28,7 @@ public class Client {
 
     }
 
-    private void runServer() {
+    public void runClient() {
 
         byte[] incBytes;
 
@@ -53,10 +53,10 @@ public class Client {
 
         try {
 
-            conn = sock;//new Socket(address, PORT);
+            conn = sock;
             out = conn.getOutputStream();
             in = conn.getInputStream();
-            runServer();
+            win.setVisible(true);
 
         }catch(IOException e) {
 
