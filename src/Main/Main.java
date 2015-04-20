@@ -16,5 +16,6 @@ public class Main {
         client.setWindow(win);
         LoginFrame login = new LoginFrame(client);
         client.runClient();
+
     }
 }

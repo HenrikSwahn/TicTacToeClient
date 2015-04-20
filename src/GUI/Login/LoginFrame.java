@@ -1,6 +1,7 @@
 package GUI.Login;
 
 import GUI.Window;
+import Model.LoginObject;
 import Model.User;
 
 import javax.swing.*;
@@ -60,8 +61,37 @@ public class LoginFrame extends JDialog {
 
     }
 
-    public void login() {
+    public String login(LoginObject login) {
 
+        try {
+
+            conn = new Socket("127.0.0.1", 6066);
+            ObjectOutputStream ObjOut = new ObjectOutputStream(conn.getOutputStream());
+            ObjOut.writeObject(login);
+            ObjOut.flush();
+
+            ObjectInputStream ObjIn = new ObjectInputStream(conn.getInputStream());
+            int statueCode = ObjIn.readInt();
+
+            switch(statueCode) {
+                case 0:
+                    dispose();
+                    client.connect(conn);
+                    break;
+                case 1:
+                    conn.close();
+                    return "Wrong password";
+                case 2:
+                    conn.close();
+                    return "User does not exist";
+            }
+        }catch(IOException e) {
+
+            System.err.print(e);
+
+        }
+
+        return null;
 
     }
 
@@ -77,7 +107,6 @@ public class LoginFrame extends JDialog {
             ObjectInputStream ObjIn = new ObjectInputStream(conn.getInputStream());
             int statusCode = ObjIn.readInt();
 
-            System.out.println(statusCode);
             switch(statusCode) {
                 case 0:
                     dispose();

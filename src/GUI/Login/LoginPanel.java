@@ -1,6 +1,7 @@
 package GUI.Login;
 
 import GUI.*;
+import Model.LoginObject;
 
 
 import javax.swing.*;
@@ -16,6 +17,7 @@ import java.awt.event.ActionListener;
 public class LoginPanel extends JPanel{
 
     private JLabel panelText;
+    private JLabel promtText;
     private JLabel userText;
     private JLabel passText;
     private JTextField nameField;
@@ -29,6 +31,7 @@ public class LoginPanel extends JPanel{
 
         this.parent = parent;
         panelText = new JLabel("Login");
+        promtText = new JLabel();
         userText = new JLabel("Email or username");
         passText = new JLabel("Password");
         nameField = new JTextField();
@@ -38,6 +41,7 @@ public class LoginPanel extends JPanel{
         gbc = new GridBagConstraints();
 
         panelText.setFont(new Font("Arial", Font.PLAIN, 18));
+        promtText.setFont(new Font("Arial", Font.PLAIN, 12));
         userText.setFont(new Font("Arial", Font.PLAIN, 16));
         passText.setFont(new Font("Arial", Font.PLAIN, 16));
         okButton.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -59,17 +63,18 @@ public class LoginPanel extends JPanel{
 
         setLayout(new GridBagLayout());
         addPanelText();
+        addPromptText();
         addNameField();
         addPassField();
 
         gbc.insets = new Insets(10,30,10,30);
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.gridx = 0;
         gbc.weightx = 0.5;
         gbc.gridwidth = 1;
         add(joinB, gbc);
 
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.gridx = 1;
         gbc.weightx = 0.5;
         add(okButton, gbc);
@@ -89,10 +94,15 @@ public class LoginPanel extends JPanel{
 
     }
 
+    private void addPromptText() {
+
+        gbc.gridy = 1;
+        add(promtText, gbc);
+    }
     private void addNameField() {
 
         JPanel p = new JPanel(new GridLayout(2,1));
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         p.add(userText);
         p.add(nameField);
         add(p, gbc);
@@ -102,7 +112,7 @@ public class LoginPanel extends JPanel{
     private void addPassField() {
 
         JPanel p = new JPanel(new GridLayout(2,1));
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         p.add(passText);
         p.add(passField);
         add(p, gbc);
@@ -119,7 +129,7 @@ public class LoginPanel extends JPanel{
 
         String name = nameField.getText();
         String pass = String.valueOf(passField.getPassword());
-        parent.login();
+        promtText.setText(parent.login(new LoginObject(pass,name)));
 
     }
 
