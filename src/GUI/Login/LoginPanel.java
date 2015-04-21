@@ -129,7 +129,7 @@ public class LoginPanel extends JPanel{
 
         String name = nameField.getText();
         String pass = String.valueOf(passField.getPassword());
-        promtText.setText(parent.login(new LoginObject(pass,name)));
+        promtText.setText(parent.login(new LoginObject(name, pass)));
 
     }
 
