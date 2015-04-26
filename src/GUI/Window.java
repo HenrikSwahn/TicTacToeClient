@@ -1,9 +1,12 @@
 package GUI;
 
 import Client.Client;
+import GUI.GameGUI.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.net.Socket;
@@ -30,7 +33,7 @@ public class Window extends JFrame{
 
         setLayout(new GridBagLayout());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(new Dimension(680,420));
+        setSize(new Dimension(680, 555));
         setResizable(true);
         setUpPanels();
         setLocationRelativeTo(null);
@@ -39,16 +42,16 @@ public class Window extends JFrame{
 
     private void setUpPanels() {
 
-        JPanel dummy = new JPanel();
+        GamePanel dummy = new GamePanel();
 
         gbc.fill = GridBagConstraints.BOTH;
         gbc.gridy = 0;
         gbc.gridx = 0;
         gbc.weightx = 1.0;
-        gbc.weighty = 0.6;
+        gbc.weighty = 0.7;
         add(dummy, gbc);
 
-        gbc.weighty = 0.4;
+        gbc.weighty = 0.3;
         gbc.gridy = 1;
         add(chat, gbc);
 
