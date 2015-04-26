@@ -10,11 +10,13 @@ public class GamePanel extends JPanel {
 
     private GridBagConstraints gbc;
     private ScorePanel scorePanel;
+    private GameField gf;
 
     public GamePanel() {
 
         gbc = new GridBagConstraints();
         scorePanel = new ScorePanel();
+        gf = new GameField();
         setUpLayout();
 
     }
@@ -29,7 +31,6 @@ public class GamePanel extends JPanel {
         gbc.weighty = 1.0;
         JPanel dummy = new JPanel();
         dummy.setLayout(null);
-        GameField gf = new GameField();
         dummy.add(gf);
         add(dummy, gbc);
 
