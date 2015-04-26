@@ -1,10 +1,9 @@
 package Client;
 
 import GUI.Window;
+import Model.GameActionObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 
 /**
@@ -16,8 +15,11 @@ public class Client {
     private final String address;
     private final int PORT;
 
-    private OutputStream out;
-    private InputStream in;
+    //private OutputStream out;
+    //private InputStream in;
+
+    private ObjectOutputStream out;
+    private ObjectInputStream in;
 
     private Window win;
 
@@ -30,20 +32,25 @@ public class Client {
 
     public void runClient() {
 
-        byte[] incBytes;
+        //byte[] incBytes;
 
         while(true) {
 
-            incBytes = new byte[4096];
+            //incBytes = new byte[4096];
 
             try {
 
-                in.read(incBytes);
-                win.incMessage(new String(incBytes, "UTF-8"));
+                //in.read(incBytes);
+                //win.incMessage(new String(incBytes, "UTF-8"));
+                Object obj = in.readObject();
 
             }catch(IOException e) {
 
                 System.err.print(e);
+
+            }catch(ClassNotFoundException e) {
+
+                e.printStackTrace();
 
             }
         }
@@ -54,8 +61,8 @@ public class Client {
         try {
 
             conn = sock;
-            out = conn.getOutputStream();
-            in = conn.getInputStream();
+            out = new ObjectOutputStream(conn.getOutputStream());
+            in = new ObjectInputStream(conn.getInputStream());
             win.setVisible(true);
 
         }catch(IOException e) {
@@ -75,11 +82,13 @@ public class Client {
 
         try {
 
-            if(obj instanceof String) {
+            /*if(obj instanceof String) {
 
                 out.write(((String) obj).getBytes());
 
-            }
+            }*/
+            System.out.println(((GameActionObject)obj).getId());
+            out.writeObject(obj);
 
         }catch(IOException e) {
 

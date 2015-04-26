@@ -8,9 +8,13 @@ import java.awt.*;
  */
 public class GameField extends JPanel {
 
-    public GameField() {
+    private GamePanel parent;
 
+    public GameField(GamePanel parent) {
+
+        this.parent = parent;
         setUpLayout();
+
     }
 
     private void setUpLayout() {
@@ -22,8 +26,14 @@ public class GameField extends JPanel {
         int counter = 0;
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
-                add(new Square(counter++),i,j);
+                add(new Square(counter++, this),i,j);
             }
         }
+    }
+
+    public void squareClicked(int id) {
+
+        parent.squareClicked(id);
+
     }
 }

@@ -2,6 +2,7 @@ package GUI;
 
 import Client.Client;
 import GUI.GameGUI.GamePanel;
+import Model.GameActionObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,7 @@ public class Window extends JFrame{
 
     private GridBagConstraints gbc;
     private ChatPanel chat;
+    private GamePanel gamePanel;
     private Client client;
 
     public Window(Client client) {
@@ -25,6 +27,7 @@ public class Window extends JFrame{
         this.client = client;
         gbc = new GridBagConstraints();
         chat = new ChatPanel(this);
+        gamePanel = new GamePanel(this);
         setUpLayout();
 
     }
@@ -42,14 +45,12 @@ public class Window extends JFrame{
 
     private void setUpPanels() {
 
-        GamePanel dummy = new GamePanel();
-
         gbc.fill = GridBagConstraints.BOTH;
         gbc.gridy = 0;
         gbc.gridx = 0;
         gbc.weightx = 1.0;
         gbc.weighty = 0.7;
-        add(dummy, gbc);
+        add(gamePanel, gbc);
 
         gbc.weighty = 0.3;
         gbc.gridy = 1;
@@ -66,6 +67,12 @@ public class Window extends JFrame{
     public void send(Object obj) {
 
         client.send(obj);
+
+    }
+
+    public void squareClicked(int id) {
+
+        client.send(new GameActionObject(id));
 
     }
 }

@@ -1,5 +1,8 @@
 package GUI.GameGUI;
 
+import GUI.*;
+import GUI.Window;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,12 +14,14 @@ public class GamePanel extends JPanel {
     private GridBagConstraints gbc;
     private ScorePanel scorePanel;
     private GameField gf;
+    private Window parent;
 
-    public GamePanel() {
+    public GamePanel(Window parent) {
 
+        this.parent = parent;
         gbc = new GridBagConstraints();
         scorePanel = new ScorePanel();
-        gf = new GameField();
+        gf = new GameField(this);
         setUpLayout();
 
     }
@@ -38,6 +43,12 @@ public class GamePanel extends JPanel {
         gbc.gridx = 1;
         gbc.weightx = 0.3;
         add(scorePanel, gbc);
+
+    }
+
+    public void squareClicked(int id) {
+
+        parent.squareClicked(id);
 
     }
 }

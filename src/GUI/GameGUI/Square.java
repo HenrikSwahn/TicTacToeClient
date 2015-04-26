@@ -16,14 +16,17 @@ public class Square extends JPanel {
     private JLabel label;
     private MatteBorder regBorder;
     private Border highlightBorder;
+    private GameField parent;
 
-    public Square(int id) {
+    public Square(int id, GameField parent) {
 
         this.id = id;
+        this.parent = parent;
         setLayout(new GridLayout(1,1));
         label = new JLabel();
         highlightBorder = BorderFactory.createLineBorder(Color.RED, 5);
         setUpLayout();
+
     }
 
     private void setUpLayout() {
@@ -67,6 +70,8 @@ public class Square extends JPanel {
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
+                parent.squareClicked(id);
 
             }
 
