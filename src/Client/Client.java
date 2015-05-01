@@ -2,6 +2,7 @@ package Client;
 
 import GUI.Window;
 import Model.GameActionObject;
+import Model.User;
 
 import java.io.*;
 import java.net.Socket;
@@ -17,6 +18,7 @@ public class Client {
     private Window win;
     private ObjectOutputStream objOut;
     private ObjectInputStream objIn;
+    private User usr;
 
     public Client(String address, int port) {
 
@@ -36,11 +38,16 @@ public class Client {
 
                     win.incMessage(obj);
 
+                }else if(obj instanceof GameActionObject) {
+
+                    System.out.println("yay");
+
                 }
 
             }catch(IOException e) {
 
                 System.err.print(e);
+                e.printStackTrace();
 
             }catch(ClassNotFoundException e) {
 
@@ -50,10 +57,11 @@ public class Client {
         }
     }
 
-    public void connect(Socket sock) {
+    public void connect(Socket sock, User usr) {
 
         try {
 
+            this.usr = usr;
             conn = sock;
             objOut = new ObjectOutputStream(conn.getOutputStream());
             objIn = new ObjectInputStream(conn.getInputStream());

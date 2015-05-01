@@ -14,6 +14,7 @@ public class GameField extends JPanel {
 
         this.parent = parent;
         setUpLayout();
+        setEnabled(false);
 
     }
 

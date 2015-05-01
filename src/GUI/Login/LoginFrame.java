@@ -72,11 +72,12 @@ public class LoginFrame extends JDialog {
 
             ObjectInputStream ObjIn = new ObjectInputStream(conn.getInputStream());
             int statueCode = ObjIn.readInt();
+            User usr = (User)ObjIn.readObject();
 
             switch(statueCode) {
                 case 0:
                     dispose();
-                    client.connect(conn);
+                    client.connect(conn, usr);
                     break;
                 case 1:
                     conn.close();
@@ -86,6 +87,10 @@ public class LoginFrame extends JDialog {
                     return "User does not exist";
             }
         }catch(IOException e) {
+
+            System.err.print(e);
+
+        }catch(ClassNotFoundException e) {
 
             System.err.print(e);
 
@@ -106,11 +111,12 @@ public class LoginFrame extends JDialog {
 
             ObjectInputStream ObjIn = new ObjectInputStream(conn.getInputStream());
             int statusCode = ObjIn.readInt();
+            User usr = (User)ObjIn.readObject();
 
             switch(statusCode) {
                 case 0:
                     dispose();
-                    client.connect(conn);
+                    client.connect(conn, usr);
                     return "Account created, logged in";
                 case 1:
                     return "Email already in use";
@@ -122,6 +128,10 @@ public class LoginFrame extends JDialog {
             }
 
         }catch(IOException e) {
+
+            System.err.print(e);
+
+        }catch(ClassNotFoundException e) {
 
             System.err.print(e);
 

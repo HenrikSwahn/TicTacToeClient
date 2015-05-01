@@ -72,7 +72,13 @@ public class Window extends JFrame{
 
     public void squareClicked(int id) {
 
-        client.send(new GameActionObject(id));
+        client.send(new GameActionObject(1,id));
+
+    }
+
+    public void enableGame(boolean b) {
+
+        this.gamePanel.setEnabled(b);
 
     }
 }
