@@ -72,11 +72,11 @@ public class LoginFrame extends JDialog {
 
             ObjectInputStream ObjIn = new ObjectInputStream(conn.getInputStream());
             int statueCode = ObjIn.readInt();
-            User usr = (User)ObjIn.readObject();
 
             switch(statueCode) {
                 case 0:
                     dispose();
+                    User usr = (User)ObjIn.readObject();
                     client.connect(conn, usr);
                     break;
                 case 1:
@@ -89,6 +89,7 @@ public class LoginFrame extends JDialog {
         }catch(IOException e) {
 
             System.err.print(e);
+            e.printStackTrace();
 
         }catch(ClassNotFoundException e) {
 
