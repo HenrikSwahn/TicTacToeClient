@@ -9,12 +9,13 @@ import java.awt.*;
 public class GameField extends JPanel {
 
     private GamePanel parent;
+    private Square[][] squares;
 
     public GameField(GamePanel parent) {
 
         this.parent = parent;
+        this.squares = new Square[3][3];
         setUpLayout();
-        setEnabled(false);
 
     }
 
@@ -27,7 +28,9 @@ public class GameField extends JPanel {
         int counter = 0;
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
-                add(new Square(counter++, this),i,j);
+                Square s = new Square(counter++, this);
+                squares[i][j] = s;
+                add(s,i,j);
             }
         }
     }
@@ -36,5 +39,14 @@ public class GameField extends JPanel {
 
         parent.squareClicked(id);
 
+    }
+
+    public void start() {
+
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                squares[i][j].start();
+            }
+        }
     }
 }

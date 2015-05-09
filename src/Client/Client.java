@@ -43,6 +43,7 @@ public class Client {
                     GameActionObject gao = new GameActionObject(1,-1);
                     objOut.writeObject(gao);
                     objOut.flush();
+                    win.start();
 
                 }
 

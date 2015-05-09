@@ -51,4 +51,10 @@ public class GamePanel extends JPanel {
         parent.squareClicked(id);
 
     }
+
+    public void start() {
+
+        gf.start();
+
+    }
 }
