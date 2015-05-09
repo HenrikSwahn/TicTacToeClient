@@ -40,9 +40,9 @@ public class Client {
 
                 }else if(obj instanceof GameActionObject) {
 
-                    objOut.writeBoolean(true);
+                    GameActionObject gao = new GameActionObject(1,-1);
+                    objOut.writeObject(gao);
                     objOut.flush();
-                    System.out.println("YAY");
 
                 }
 
