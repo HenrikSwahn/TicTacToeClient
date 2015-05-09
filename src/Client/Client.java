@@ -4,6 +4,7 @@ import GUI.Window;
 import Model.GameActionObject;
 import Model.User;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.Socket;
 
@@ -27,6 +28,32 @@ public class Client {
 
     }
 
+    private void newGameAsked() {
+
+        int response = JOptionPane.showConfirmDialog(
+            null,
+            "Start a new game?",
+            "New game",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE);
+
+        GameActionObject gao = null;
+
+        if(response == JOptionPane.YES_OPTION) {
+
+            gao = new GameActionObject(1, -1);
+
+        }else if(response == JOptionPane.NO_OPTION) {
+
+            gao = new GameActionObject(2, -1);
+
+        }
+
+        send(gao);
+        win.start();
+
+    }
+
     public void runClient() {
 
         while(true) {
@@ -40,13 +67,10 @@ public class Client {
 
                 }else if(obj instanceof GameActionObject) {
 
-                    GameActionObject gao = new GameActionObject(1,-1);
-                    objOut.writeObject(gao);
-                    objOut.flush();
-                    win.start();
-
+                    if(((GameActionObject) obj).getAction() == 0) {
+                        newGameAsked();
+                    }
                 }
-
             }catch(IOException e) {
 
                 System.err.print(e);
