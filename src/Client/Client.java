@@ -54,6 +54,33 @@ public class Client {
 
     }
 
+    private void gotGameActionObject(GameActionObject gao) {
+
+
+        switch(gao.getAction()) {
+
+            case 0:
+                newGameAsked();
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                win.incMessage("You are X");
+                win.setMarks("X", "O");
+                break;
+            case 5:
+                win.incMessage("You are O");
+                win.setMarks("O", "X");
+                break;
+        }
+
+
+    }
+
     public void runClient() {
 
         while(true) {
@@ -67,9 +94,8 @@ public class Client {
 
                 }else if(obj instanceof GameActionObject) {
 
-                    if(((GameActionObject) obj).getAction() == 0) {
-                        newGameAsked();
-                    }
+                    gotGameActionObject((GameActionObject)obj);
+
                 }
             }catch(IOException e) {
 

@@ -81,4 +81,10 @@ public class Window extends JFrame{
         gamePanel.start();
 
     }
+
+    public void setMarks(String playerMark, String opponentMark) {
+
+        gamePanel.setMarks(playerMark, opponentMark);
+
+    }
 }

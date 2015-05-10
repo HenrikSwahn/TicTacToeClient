@@ -8,8 +8,6 @@ import java.awt.*;
  */
 public class ScorePanel extends JPanel {
 
-    private String player1;
-    private String player2;
     private JLabel p1Label;
     private JLabel p2Label;
     private GridBagConstraints gbc;
@@ -29,17 +27,22 @@ public class ScorePanel extends JPanel {
 
     }
 
-    public void setPlayer1(String player1) {
-        
-        this.player1 = player1;
-        this.p1Label.setText(this.player1);
+    private void setPlayerMark(String player) {
+
+        this.p1Label.setText(player);
 
     }
 
-    public void setPlayer2(String player2) {
+    private void setOpponentMark(String opponent) {
 
-        this.player2 = player2;
-        this.p2Label.setText(this.player2);
+        this.p2Label.setText(opponent);
+
+    }
+
+    public void setMarks(String playerMark, String opponentMark) {
+
+        setPlayerMark("You are: " + playerMark);
+        setOpponentMark("Opponent: " + opponentMark);
 
     }
 }

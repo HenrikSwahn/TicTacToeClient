@@ -57,4 +57,10 @@ public class GamePanel extends JPanel {
         gf.start();
 
     }
+
+    public void setMarks(String playerMark, String opponentMark) {
+
+        scorePanel.setMarks(playerMark, opponentMark);
+
+    }
 }
