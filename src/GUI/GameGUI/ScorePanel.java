@@ -8,15 +8,14 @@ import java.awt.*;
  */
 public class ScorePanel extends JPanel {
 
-    private JLabel p1Label;
-    private JLabel p2Label;
+    private JLabel playerLabel;
+    private JLabel opponentLabel;
     private GridBagConstraints gbc;
 
     public ScorePanel() {
 
-        setBackground(Color.red);
-        p1Label = new JLabel("Dummy1");
-        p2Label = new JLabel("Dummy2");
+        playerLabel = new JLabel("Dummy1");
+        opponentLabel = new JLabel("Dummy2");
         gbc = new GridBagConstraints();
         setUpLayout();
 
@@ -24,18 +23,28 @@ public class ScorePanel extends JPanel {
 
     private void setUpLayout() {
 
+        setLayout(new GridBagLayout());
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weighty = 1.0;
+        gbc.weightx = 1.0;
+        add(playerLabel, gbc);
+
+        gbc.gridy = 1;
+        add(opponentLabel, gbc);
 
     }
 
     private void setPlayerMark(String player) {
 
-        this.p1Label.setText(player);
+        this.playerLabel.setText(player);
 
     }
 
     private void setOpponentMark(String opponent) {
 
-        this.p2Label.setText(opponent);
+        this.opponentLabel.setText(opponent);
 
     }
 
