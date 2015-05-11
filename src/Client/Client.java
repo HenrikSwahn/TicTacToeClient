@@ -49,10 +49,7 @@ public class Client {
             gao = new GameActionObject(2, -1);
 
         }
-
         send(gao);
-        win.start();
-
     }
 
     private void gotGameActionObject(GameActionObject gao) {
@@ -71,19 +68,23 @@ public class Client {
                 break;
             case 4:
                 mark = "X";
-                win.incMessage("You are X");
+                win.incMessage("Server > You are X");
                 win.setMarks("X", "O");
                 break;
             case 5:
                 this.mark = "O";
-                win.incMessage("You are O");
+                win.incMessage("Server > You are O");
                 win.setMarks("O", "X");
                 break;
             case 6:
-                win.setClickedSquare(gao.getMark(), gao.getVal());
+                 win.setClickedSquare(gao.getMark(), gao.getVal());
+                win.incMessage("Server > Valid move");
                 break;
             case 7:
-                System.out.println("Invalid move");
+                win.incMessage("Server > Invalid move");
+                break;
+            case 8:
+                win.start();
                 break;
         }
     }
@@ -144,7 +145,6 @@ public class Client {
 
         try {
 
-            System.out.println("C");
             objOut.writeObject(obj);
             objOut.flush();
 
