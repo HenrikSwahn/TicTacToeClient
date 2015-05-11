@@ -20,6 +20,7 @@ public class Client {
     private ObjectOutputStream objOut;
     private ObjectInputStream objIn;
     private User usr;
+    private String mark;
 
     public Client(String address, int port) {
 
@@ -69,22 +70,22 @@ public class Client {
             case 3:
                 break;
             case 4:
+                mark = "X";
                 win.incMessage("You are X");
                 win.setMarks("X", "O");
                 break;
             case 5:
+                this.mark = "O";
                 win.incMessage("You are O");
                 win.setMarks("O", "X");
                 break;
             case 6:
-                System.out.println("Valid move");
+                win.setClickedSquare(gao.getMark(), gao.getVal());
                 break;
             case 7:
                 System.out.println("Invalid move");
                 break;
         }
-
-
     }
 
     public void runClient() {

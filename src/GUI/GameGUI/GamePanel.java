@@ -48,7 +48,6 @@ public class GamePanel extends JPanel {
 
     public void squareClicked(int id) {
 
-        System.out.println("P");
         parent.squareClicked(id);
 
     }
@@ -62,6 +61,12 @@ public class GamePanel extends JPanel {
     public void setMarks(String playerMark, String opponentMark) {
 
         scorePanel.setMarks(playerMark, opponentMark);
+
+    }
+
+    public void setClickedSquare(String mark, int id) {
+
+        gf.setClickedSquare(mark, id);
 
     }
 }

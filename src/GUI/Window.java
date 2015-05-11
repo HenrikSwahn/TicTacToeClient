@@ -72,8 +72,7 @@ public class Window extends JFrame{
 
     public void squareClicked(int id) {
 
-        System.out.println("W");
-        //client.send(new GameActionObject(3,id));
+        client.send(new GameActionObject(3,id));
 
     }
 
@@ -86,6 +85,12 @@ public class Window extends JFrame{
     public void setMarks(String playerMark, String opponentMark) {
 
         gamePanel.setMarks(playerMark, opponentMark);
+
+    }
+
+    public void setClickedSquare(String mark, int id) {
+
+        gamePanel.setClickedSquare(mark, id);
 
     }
 }

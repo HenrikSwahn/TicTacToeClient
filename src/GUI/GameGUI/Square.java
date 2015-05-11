@@ -25,7 +25,7 @@ public class Square extends JPanel {
         this.parent = parent;
         enabled = false;
         setLayout(new GridLayout(1,1));
-        label = new JLabel();
+        label = new JLabel("-");
         highlightBorder = BorderFactory.createLineBorder(Color.RED, 5);
         setUpLayout();
 
@@ -73,25 +73,25 @@ public class Square extends JPanel {
 
     }
 
+    public void setSquareMark(String mark) {
+
+        label.setText(mark);
+
+    }
+
     private void addListener() {
 
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                System.out.println(enabled);
-                if(enabled) {
-
-                    System.out.println("S");
-                    parent.squareClicked(id);
-
-                }
-
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
 
+                if(enabled)
+                    parent.squareClicked(id);
             }
 
             @Override

@@ -37,7 +37,6 @@ public class GameField extends JPanel {
 
     public void squareClicked(int id) {
 
-        System.out.println("F");
         parent.squareClicked(id);
 
     }
@@ -49,5 +48,23 @@ public class GameField extends JPanel {
                 squares[i][j].start();
             }
         }
+    }
+
+    public void setClickedSquare(String mark, int id) {
+
+        int i;
+
+        if(id <= 2)
+            i = 0;
+        else if(id >= 3 && id <= 5) {
+            id = id - 3;
+            i = 1;
+        }else {
+            id = id - 6;
+            i = 2;
+        }
+
+        squares[i][id].setSquareMark(mark);
+
     }
 }
