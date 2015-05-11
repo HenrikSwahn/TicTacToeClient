@@ -28,6 +28,7 @@ public class Window extends JFrame{
         gbc = new GridBagConstraints();
         chat = new ChatPanel(this);
         gamePanel = new GamePanel(this);
+        chat.setSize(getWidth(), 150);
         setUpLayout();
 
     }
@@ -52,6 +53,7 @@ public class Window extends JFrame{
         gbc.weighty = 0.7;
         add(gamePanel, gbc);
 
+        gbc.fill = GridBagConstraints.BOTH;
         gbc.weighty = 0.3;
         gbc.gridy = 1;
         add(chat, gbc);
@@ -91,6 +93,18 @@ public class Window extends JFrame{
     public void setClickedSquare(String mark, int id) {
 
         gamePanel.setClickedSquare(mark, id);
+
+    }
+
+    public void lock() {
+
+        gamePanel.lock();
+
+    }
+
+    public void unlock() {
+
+        gamePanel.unlock();
 
     }
 }

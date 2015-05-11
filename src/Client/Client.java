@@ -86,6 +86,12 @@ public class Client {
             case 8:
                 win.start();
                 break;
+            case 9:
+                win.lock();
+                break;
+            case 10:
+                win.unlock();
+                break;
         }
     }
 

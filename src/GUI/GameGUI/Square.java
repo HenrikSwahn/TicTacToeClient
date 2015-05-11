@@ -73,6 +73,19 @@ public class Square extends JPanel {
 
     }
 
+    public void lock() {
+
+        setBorder(regBorder);
+        enabled = false;
+
+    }
+
+    public void unlock() {
+
+        enabled = true;
+
+    }
+
     public void setSquareMark(String mark) {
 
         label.setText(mark);

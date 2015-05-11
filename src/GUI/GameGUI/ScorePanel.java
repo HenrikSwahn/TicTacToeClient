@@ -118,15 +118,17 @@ public class ScorePanel extends JPanel {
 
     }
 
-    public void setPlayerTurn(JLabel playerTurn) {
+    public void setPlayerTurn() {
 
-        this.playerTurn = playerTurn;
+        this.playerTurn.setText("It's your turn!");
+        this.opponentTurn.setText("");
 
     }
 
-    public void setOpponentTurn(JLabel opponentTurn) {
+    public void setOpponentTurn() {
 
-        this.opponentTurn = opponentTurn;
+        this.opponentTurn.setText("It's opponents turn!");
+        this.playerTurn.setText("");
 
     }
 

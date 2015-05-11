@@ -69,4 +69,18 @@ public class GamePanel extends JPanel {
         gf.setClickedSquare(mark, id);
 
     }
+
+    public void lock() {
+
+        gf.lock();
+        scorePanel.setOpponentTurn();
+
+    }
+
+    public void unlock() {
+
+        gf.unlock();
+        scorePanel.setPlayerTurn();
+
+    }
 }

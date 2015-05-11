@@ -19,10 +19,12 @@ public class ChatPanel extends JPanel {
 
         this.window = window;
         area = new JTextArea();
+        area.setEditable(false);
         input = new JTextField();
         gbc = new GridBagConstraints();
         setUpLayout();
         addListeners();
+        this.setMaximumSize(new Dimension(getWidth(), getHeight()));
 
     }
 

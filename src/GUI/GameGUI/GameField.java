@@ -2,6 +2,7 @@ package GUI.GameGUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.stream.IntStream;
 
 /**
  * Created by Nilj on 26/04/15.
@@ -66,5 +67,23 @@ public class GameField extends JPanel {
 
         squares[i][id].setSquareMark(mark);
 
+    }
+
+    public void lock() {
+
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                squares[i][j].lock();
+            }
+        }
+    }
+
+    public void unlock() {
+
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                squares[i][j].unlock();
+            }
+        }
     }
 }
