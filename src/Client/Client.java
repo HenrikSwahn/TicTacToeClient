@@ -76,6 +76,12 @@ public class Client {
                 win.incMessage("You are O");
                 win.setMarks("O", "X");
                 break;
+            case 6:
+                System.out.println("Valid move");
+                break;
+            case 7:
+                System.out.println("Invalid move");
+                break;
         }
 
 
@@ -137,6 +143,7 @@ public class Client {
 
         try {
 
+            System.out.println("C");
             objOut.writeObject(obj);
             objOut.flush();
 

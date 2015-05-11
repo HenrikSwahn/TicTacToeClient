@@ -72,7 +72,8 @@ public class Window extends JFrame{
 
     public void squareClicked(int id) {
 
-        client.send(new GameActionObject(3,id));
+        System.out.println("W");
+        //client.send(new GameActionObject(3,id));
 
     }
 

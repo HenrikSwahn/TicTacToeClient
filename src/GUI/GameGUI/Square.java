@@ -17,13 +17,13 @@ public class Square extends JPanel {
     private MatteBorder regBorder;
     private Border highlightBorder;
     private GameField parent;
-    private boolean isEnabled;
+    private boolean enabled;
 
     public Square(int id, GameField parent) {
 
         this.id = id;
         this.parent = parent;
-        isEnabled = false;
+        enabled = false;
         setLayout(new GridLayout(1,1));
         label = new JLabel();
         highlightBorder = BorderFactory.createLineBorder(Color.RED, 5);
@@ -69,7 +69,7 @@ public class Square extends JPanel {
 
     public void start() {
 
-        isEnabled = true;
+        enabled = true;
 
     }
 
@@ -79,8 +79,13 @@ public class Square extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                if(isEnabled)
+                System.out.println(enabled);
+                if(enabled) {
+
+                    System.out.println("S");
                     parent.squareClicked(id);
+
+                }
 
             }
 
@@ -97,7 +102,7 @@ public class Square extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
 
-                if(isEnabled)
+                if(enabled)
                     setBorder(highlightBorder);
 
             }
@@ -105,7 +110,7 @@ public class Square extends JPanel {
             @Override
             public void mouseExited(MouseEvent e) {
 
-                if(isEnabled)
+                if(enabled)
                     setBorder(regBorder);
 
             }

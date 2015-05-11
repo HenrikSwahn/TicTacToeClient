@@ -37,6 +37,7 @@ public class GameField extends JPanel {
 
     public void squareClicked(int id) {
 
+        System.out.println("F");
         parent.squareClicked(id);
 
     }

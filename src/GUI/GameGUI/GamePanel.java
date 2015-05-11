@@ -48,6 +48,7 @@ public class GamePanel extends JPanel {
 
     public void squareClicked(int id) {
 
+        System.out.println("P");
         parent.squareClicked(id);
 
     }
