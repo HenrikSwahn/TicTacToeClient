@@ -77,7 +77,7 @@ public class Client {
                 win.setMarks("O", "X");
                 break;
             case 6:
-                 win.setClickedSquare(gao.getMark(), gao.getVal());
+                win.setClickedSquare(gao.getMark(), gao.getVal());
                 win.incMessage("Server > Valid move");
                 break;
             case 7:
@@ -91,6 +91,10 @@ public class Client {
                 break;
             case 10:
                 win.unlock();
+                break;
+            case 11:
+                win.lock();
+                win.incMessage("Server > Winner is " + gao.getMark());
                 break;
         }
     }
