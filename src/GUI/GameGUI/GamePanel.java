@@ -83,4 +83,13 @@ public class GamePanel extends JPanel {
         scorePanel.setPlayerTurn();
 
     }
+
+    public void updateScore(String myMark, String incMark,  int val) {
+
+        if(myMark.equals(incMark))
+            scorePanel.setPlayerScore(val);
+        else if(!myMark.equals(incMark))
+            scorePanel.setOpponenScore(val);
+
+    }
 }

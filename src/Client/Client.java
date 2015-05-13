@@ -96,6 +96,9 @@ public class Client {
                 win.lock();
                 win.incMessage("Server > Winner is " + gao.getMark());
                 break;
+            case 12:
+                win.updateScore(mark, gao.getMark(), gao.getVal());
+                break;
         }
     }
 

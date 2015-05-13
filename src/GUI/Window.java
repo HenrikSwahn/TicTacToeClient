@@ -98,4 +98,10 @@ public class Window extends JFrame{
         gamePanel.unlock();
 
     }
+
+    public void updateScore(String myMark, String incMark, int val) {
+
+        gamePanel.updateScore(myMark, incMark, val);
+
+    }
 }

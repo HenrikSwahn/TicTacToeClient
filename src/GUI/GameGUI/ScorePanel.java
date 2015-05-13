@@ -106,15 +106,15 @@ public class ScorePanel extends JPanel {
 
     }
 
-    public void setPlayerScore(JLabel playerScore) {
+    public void setPlayerScore(int val) {
 
-        this.playerScore = playerScore;
+        this.playerScore.setText("Score: " + Integer.toString(val));
 
     }
 
-    public void setOpponenScore(JLabel opponenScore) {
+    public void setOpponenScore(int val) {
 
-        this.opponenScore = opponenScore;
+        this.opponenScore.setText("Score: " + Integer.toString(val));
 
     }
 
