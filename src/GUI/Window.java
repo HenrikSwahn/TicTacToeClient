@@ -35,9 +35,9 @@ public class Window extends JFrame{
 
     private void setUpLayout() {
 
-        setLayout(new GridBagLayout());
+        setLayout(new GridLayout(2,1));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(new Dimension(680, 555));
+        setSize(new Dimension(880, 755));
         setResizable(true);
         setUpPanels();
         setLocationRelativeTo(null);
@@ -46,17 +46,8 @@ public class Window extends JFrame{
 
     private void setUpPanels() {
 
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.gridy = 0;
-        gbc.gridx = 0;
-        gbc.weightx = 1.0;
-        gbc.weighty = 0.7;
-        add(gamePanel, gbc);
-
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.weighty = 0.3;
-        gbc.gridy = 1;
-        add(chat, gbc);
+        add(gamePanel);
+        add(chat);
 
     }
 

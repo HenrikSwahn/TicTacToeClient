@@ -36,11 +36,11 @@ public class ChatPanel extends JPanel {
         gbc.gridy = 0;
         gbc.gridx = 0;
         gbc.weightx = 1.0;
-        gbc.weighty = 0.9;
+        gbc.weighty = 0.95;
         JScrollPane jsp = new JScrollPane(area);
         add(jsp, gbc);
 
-        gbc.weighty = 0.1;
+        gbc.weighty = 0.05;
         gbc.gridy = 1;
         add(input, gbc);
 
